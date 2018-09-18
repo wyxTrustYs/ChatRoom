@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Socket">
+      <UniqueIdentifier>{51314e1f-259c-4e1c-afbc-58e9a28e04eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="列表类">
+      <UniqueIdentifier>{8a884f81-2728-4517-8af3-a8870cd1e908}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="登陆">
+      <UniqueIdentifier>{af11d1f4-7a5f-455c-95ce-29427c2d8772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="注册">
+      <UniqueIdentifier>{135a5e3a-294d-4507-8065-b3b46f60ac28}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChatRoom.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DataType.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Mysocket.h">
+      <Filter>Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="FriendList.h">
+      <Filter>列表类</Filter>
+    </ClInclude>
+    <ClInclude Include="ListTab.h">
+      <Filter>列表类</Filter>
+    </ClInclude>
+    <ClInclude Include="PrivateDlg.h">
+      <Filter>列表类</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupList.h">
+      <Filter>列表类</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginDlg.h">
+      <Filter>登陆</Filter>
+    </ClInclude>
+    <ClInclude Include="PrivateList.h">
+      <Filter>列表类</Filter>
+    </ClInclude>
+    <ClInclude Include="Registe.h">
+      <Filter>注册</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ChatRoom.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Mysocket.cpp">
+      <Filter>Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="FriendList.cpp">
+      <Filter>列表类</Filter>
+    </ClCompile>
+    <ClCompile Include="ListTab.cpp">
+      <Filter>列表类</Filter>
+    </ClCompile>
+    <ClCompile Include="PrivateDlg.cpp">
+      <Filter>列表类</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupList.cpp">
+      <Filter>列表类</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginDlg.cpp">
+      <Filter>登陆</Filter>
+    </ClCompile>
+    <ClCompile Include="PrivateList.cpp">
+      <Filter>列表类</Filter>
+    </ClCompile>
+    <ClCompile Include="Registe.cpp">
+      <Filter>注册</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ChatRoom.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ChatRoom.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\ChatRoom.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
