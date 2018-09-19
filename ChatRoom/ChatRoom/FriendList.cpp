@@ -6,16 +6,17 @@
 #include "FriendList.h"
 #include "afxdialogex.h"
 #include "PrivateDlg.h"
+#include "GroupDlg.h"
 #include "resource.h"
 #include "DataType.h"
 // CFriendList 对话框
 
 IMPLEMENT_DYNAMIC(CFriendList, CDialogEx)
 
-CFriendList::CFriendList(CWnd* pParent /*=NULL*/)
+CFriendList::CFriendList(CString m_title,CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_Dlg, pParent)
 {
-	
+	this->title = m_title;
 }
 
 CFriendList::~CFriendList()
@@ -31,8 +32,7 @@ void CFriendList::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CFriendList, CDialogEx)
 
-
-	ON_MESSAGE(WM_UPDATEFRND, &CFriendList::OnUpdatefrnd)
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -42,24 +42,24 @@ END_MESSAGE_MAP()
 BOOL CFriendList::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-
+	SetWindowText(title);
 	m_ListTab.InsertItem(0, L"好友");
 	m_ListTab.InsertItem(1, L"群聊");
 
 	m_ListTab.m_dia[0] = new CPrivateDlg();
-	//m_ListTab.m_dia[1] = new ();
+	m_ListTab.m_dia[1] = new GroupDlg();
 
 	m_ListTab.m_dia[0]->Create(IDD_DIALOGSin, &m_ListTab);
-	//m_ListTab.m_dia[1]->Create(IDD_DIALOGGroup, &m_ListTab);
+	m_ListTab.m_dia[1]->Create(IDD_DIALOGGroup, &m_ListTab);
 
 	CRect rc;
 	m_ListTab.GetClientRect(rc);
 	rc.DeflateRect(2, 24, 3, 2);
 	m_ListTab.m_dia[0]->MoveWindow(rc);
-	//m_ListTab.m_dia[1]->MoveWindow(rc);
+	m_ListTab.m_dia[1]->MoveWindow(rc);
 
 	m_ListTab.m_dia[0]->ShowWindow(SW_SHOW);
-	//m_ListTab.m_dia[0]->ShowWindow(SW_HIDE);
+	m_ListTab.m_dia[1]->ShowWindow(SW_HIDE);
 
 
 	//::PostMessage(AfxGetMainWnd()->m_hWnd, WM_Search, (WPARAM)m_hWnd, NULL);
@@ -68,9 +68,9 @@ BOOL CFriendList::OnInitDialog()
 }
 
 
-
-afx_msg LRESULT CFriendList::OnUpdatefrnd(WPARAM wParam, LPARAM lParam)
+void CFriendList::OnClose()
 {
-
-	return 0;
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	ExitProcess(0);
+	CDialogEx::OnClose();
 }

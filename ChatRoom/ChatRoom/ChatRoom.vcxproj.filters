@@ -25,6 +25,9 @@
     <Filter Include="注册">
       <UniqueIdentifier>{135a5e3a-294d-4507-8065-b3b46f60ac28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="聊天对话框">
+      <UniqueIdentifier>{90c13ee8-fdd7-42d3-95fe-c779e8561f05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -64,7 +67,10 @@
       <Filter>注册</Filter>
     </ClInclude>
     <ClInclude Include="GroupDlg.h">
-      <Filter>头文件</Filter>
+      <Filter>列表类</Filter>
+    </ClInclude>
+    <ClInclude Include="PrivateChat.h">
+      <Filter>聊天对话框</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +99,10 @@
       <Filter>注册</Filter>
     </ClCompile>
     <ClCompile Include="GroupDlg.cpp">
-      <Filter>源文件</Filter>
+      <Filter>列表类</Filter>
+    </ClCompile>
+    <ClCompile Include="PrivateChat.cpp">
+      <Filter>聊天对话框</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

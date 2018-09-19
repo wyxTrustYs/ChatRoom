@@ -12,16 +12,20 @@ class MsgType(enum.Enum):
     RegisterMsg = 0
     LoginMsg = 1
     Search = 2
+    FriendChat = 3
 
 
 class SendType(enum.Enum):
     RegisterMsg = 0,
     LoginMsg = 1
     Search = 2
+    FriendChat = 3
 
 
 # 添加服务器类
 class Server(object):
+    dictlist = {}
+
     # 构造
     def __init__(self):
         # 初始化套接字
@@ -51,6 +55,7 @@ class Server(object):
                 message = client.recv(2048)
                 # 获取发送过来的消息类型
                 type, = struct.unpack('i', message[:4])
+
                 # 调用函数的时候，一定self【否则报错，缺少一个参数】
                 message = message[4:]
                 self.dictfun[type](self, client, message)
@@ -103,7 +108,11 @@ class Server(object):
                            "AND UserPassword=MD5('%s')" % (name, pswd)) != 0:
             self.sql.insert("UPDATE user SET UserStatus=1 "
                             "WHERE UserId=%s AND UserPassword=MD5('%s')" % (name, pswd))
-            client.send(struct.pack('iii20s', SendType.LoginMsg.value, hwnd, 1, '登录成功'.encode('GBK')))
+            nickname = self.sql.QuerySql("SELECT UserName FROM user WHERE UserId=%s " % name)
+            nick = nickname[0][0]
+            client.send(struct.pack('iii20s20s', SendType.LoginMsg.value, hwnd, 1, '登录成功'.encode('GBK'),nick.encode('GBK')))
+
+            Server.dictlist[nick] = client
             Userdict[client] = name
         else:
             client.send(struct.pack('iii20s', SendType.LoginMsg.value, hwnd, 0, '用户名或密码错误'.encode('GBK')))
@@ -116,17 +125,31 @@ class Server(object):
         friend = self.sql.QuerySql("SELECT idb FROM friend WHERE ida=%s " % name)
         for num in friend:
             nickname = self.sql.QuerySql("SELECT UserName FROM user WHERE UserId=%s " % num[0])
-            print(nickname[0][0])
             client.send(struct.pack('ii20s', SendType.Search.value, hwnd, nickname[0][0].encode('gbk')))
             Lnum.append(num[0])
 
-        #print(Lnum)
+    def friendchat(self, client, msg):
+        hwnd, user1, user2, message = struct.unpack('i40s40s200s', msg[0:284])
+        # 获取需要发送到的用户名
+        user1 = user1.decode('utf16').rstrip('\x00')
+        user2 = user2.decode('utf16').rstrip('\x00')
+        message = message.decode('utf16').rstrip('\x00')
+
+        print(user1)
+        print(user2)
+        # 将原来的包转发出去
+        if user2 in Server.dictlist:
+            Server.dictlist[user2].send(b'\x03\x00\x00\x00' + msg)
+            # 添加聊天记录到数据库
+            # sql = "INSERT INTO msg_log VALUE('%s', '%s', '%s', now())" % (user1, user2, message)
+            # self.sql.insert(sql)
 
     # 一个字典，包含的是对应的消息处理函数
     dictfun = {
         0: register,
         1: login,
-        2: search
+        2: search,
+        3: friendchat
     }
 
 

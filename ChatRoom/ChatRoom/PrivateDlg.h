@@ -22,8 +22,11 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
+
 	CListCtrl PrivateList;
 	virtual BOOL OnInitDialog();
 protected:
 	afx_msg LRESULT OnUpdatefrnd(WPARAM wParam, LPARAM lParam);
+public:
+	afx_msg void OnDblclkList1(NMHDR *pNMHDR, LRESULT *pResult);
 };

@@ -3,25 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="df24b75f-10d5-42c5-8893-ab8236df1d9b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../ChatRoom/.vs/ChatRoom/v14/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/.vs/ChatRoom/v14/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.aps" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.aps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.rc" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.rc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.vcxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.vcxproj.filters" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/DataType.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/DataType.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/FriendList.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/FriendList.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/FriendList.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/FriendList.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/GroupList.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/GroupList.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/GroupDlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/GroupDlg.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/GroupDlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/GroupDlg.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/LoginDlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/LoginDlg.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/LoginDlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/LoginDlg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/Mysocket.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/Mysocket.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/PrivateDlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/PrivateDlg.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/PrivateDlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/PrivateDlg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/PrivateList.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/PrivateList.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MinServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MinServer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/resource.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/resource.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ipch/CHATROOM-a9dc15ec/CHATROOM-e1685d49.ipch" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ipch/CHATROOM-a9dc15ec/CHATROOM-e1685d49.ipch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minsql.py" beforeDir="false" afterPath="$PROJECT_DIR$/minsql.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,30 +62,31 @@
     <session id="-1746667791">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.58" value="1" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="449" />
+          <entry key="py" value="747" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="449" />
+          <entry key="Python" value="747" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="2" />
+          <entry key="py" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="2" />
+          <entry key="Python" value="8" />
         </counts>
       </usages-collector>
     </session>
@@ -97,11 +96,30 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="119" column="100" selection-start-line="119" selection-start-column="100" selection-end-line="119" selection-end-column="100" />
+            <state relative-caret-position="101">
+              <caret line="138" column="19" selection-start-line="138" selection-start-column="19" selection-end-line="138" selection-end-column="19" />
               <folding>
                 <element signature="e#15#26#0" expanded="true" />
+                <marker date="1537361927884" expanded="true" signature="4605:4614" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/threading.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="131">
+              <caret line="863" selection-start-line="863" selection-end-line="863" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/types.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -109,20 +127,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/minsql.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1081">
-              <caret line="49" column="38" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
+            <state relative-caret-position="197">
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
               <folding>
                 <element signature="e#16#30#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/pymysql/cursors.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1932">
-              <caret line="90" selection-start-line="90" selection-end-line="90" />
             </state>
           </provider>
         </entry>
@@ -141,8 +150,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="26" />
-    <option name="y" value="122" />
+    <option name="x" value="-31" />
+    <option name="y" value="74" />
     <option name="width" value="1386" />
     <option name="height" value="788" />
   </component>
@@ -152,7 +161,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,6 +172,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -256,8 +265,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30354393" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.0" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.47765794" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.32973805" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -273,34 +282,67 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mysql.py" />
     <entry file="file://D:/Python37/Lib/threading.py" />
     <entry file="file://D:/Python37/Lib/site-packages/pymysql/cursors.py" />
-    <entry file="file://$PROJECT_DIR$/Server.py">
+    <entry file="file://E:/15PB培训笔记/课上代码/MiniChat_V2.0/MiniServer/MiniServer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="119" column="100" selection-start-line="119" selection-start-column="100" selection-end-line="119" selection-end-column="100" />
-          <folding>
-            <element signature="e#15#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="322">
+          <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/pymysql/cursors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/minsql.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1081">
-          <caret line="49" column="38" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
+        <state relative-caret-position="197">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="e#16#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/pymysql/cursors.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/types.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1932">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        <state relative-caret-position="274">
+          <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="863" selection-start-line="863" selection-end-line="863" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="138" column="19" selection-start-line="138" selection-start-column="19" selection-end-line="138" selection-end-column="19" />
+          <folding>
+            <element signature="e#15#26#0" expanded="true" />
+            <marker date="1537361927884" expanded="true" signature="4605:4614" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -6,12 +6,15 @@
 #define WM_LOGIN WM_USER + 3
 #define WM_Search WM_USER + 4
 #define WM_UPDATEFRND WM_USER + 5
+#define WM_SENDMSG WM_USER + 6
+#define WM_GETFRIENDMSG WM_USER + 7
 // 强枚举类型
 enum class MsgType
 {
 	REGISTER = 0,
 	LOGIN = 1,
-	Search = 2
+	Search = 2,
+	FRIENDMSG = 3
 };
 
 // 强枚举类型
@@ -19,7 +22,8 @@ enum class RecvType
 {
 	REGISTER = 0,
 	LOGIN = 1,
-	Search = 2
+	Search = 2,
+	FRIENDMSG = 3
 };
 
 // 保存注册信息的结构体
@@ -39,6 +43,14 @@ struct LoginInfo
 	wchar_t pswd[20];
 };
 
+// 保存私聊的结构体
+struct FrdChatMsg
+{
+	WCHAR from[20];	// 用户名
+	WCHAR to[20];	// 发送给谁
+	WCHAR msg[100];// 消息
+};
+
 // 用于保存所有信息的结构体
 struct MsgInfo
 {
@@ -49,6 +61,7 @@ struct MsgInfo
 	union {
 		RegisterInfo reg_info;
 		LoginInfo login_info;
+		FrdChatMsg frdchat_msg;
 	};
 };
 //返回更新好友列表的消息
@@ -56,6 +69,8 @@ struct RecvSearch
 {
 	char name[40];
 };
+
+
 
 // 注册是否成功
 struct RecvReg
@@ -65,7 +80,12 @@ struct RecvReg
 };
 
 // 接收登录是否成功
-typedef RecvReg RecvLogin;
+struct RecvLogin
+{
+	BOOL sucess;
+	char msg[20];
+	char nick[20];
+};
 
 
 // 用于保存所有接收到的信息的结构体
@@ -79,6 +99,7 @@ struct RecvInfo
 		RecvReg reg_info;
 		RecvLogin login_info;
 		RecvSearch searchFred;
+		FrdChatMsg frdchat_msg;
 		char str[100];
 	};
 };

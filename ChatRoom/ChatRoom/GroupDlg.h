@@ -1,4 +1,5 @@
 #pragma once
+#include "afxcmn.h"
 
 
 // GroupDlg 对话框
@@ -20,4 +21,7 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+public:
+	CListCtrl CGroupList;
+	virtual BOOL OnInitDialog();
 };

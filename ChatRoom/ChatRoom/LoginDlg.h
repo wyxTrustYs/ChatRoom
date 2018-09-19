@@ -53,4 +53,8 @@ protected:
 	afx_msg LRESULT OnClicklogin(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnRegister1(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnSearch(WPARAM wParam, LPARAM lParam);
+//	afx_msg LRESULT OnFriendmsg(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnSendmsg(WPARAM wParam, LPARAM lParam);
+public:
+	CStatic CStringName;
 };

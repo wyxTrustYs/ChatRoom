@@ -188,6 +188,7 @@
     <ClInclude Include="ListTab.h" />
     <ClInclude Include="LoginDlg.h" />
     <ClInclude Include="Mysocket.h" />
+    <ClInclude Include="PrivateChat.h" />
     <ClInclude Include="PrivateDlg.h" />
     <ClInclude Include="Registe.h" />
     <ClInclude Include="Resource.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="ListTab.cpp" />
     <ClCompile Include="LoginDlg.cpp" />
     <ClCompile Include="Mysocket.cpp" />
+    <ClCompile Include="PrivateChat.cpp" />
     <ClCompile Include="PrivateDlg.cpp" />
     <ClCompile Include="Registe.cpp" />
     <ClCompile Include="stdafx.cpp">

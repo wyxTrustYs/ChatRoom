@@ -9,10 +9,14 @@
 #include "Registe.h"
 #include "DataType.h"
 #include "FriendList.h"
+#include "PrivateChat.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
+#include <map>
+using std::map;
+// 当前已经打开的所有窗口
+map<CString, HWND> ChatWindows;
 
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
@@ -33,6 +37,8 @@ protected:
 protected:
 	DECLARE_MESSAGE_MAP()
 
+public:
+	//	afx_msg void OnClose();
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
@@ -46,6 +52,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 
+	//	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -69,6 +76,7 @@ void CLoginDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDbtnCancel, BtnCancel);
 	DDX_Text(pDX, IDCPassword, EditPsd);
 	DDX_Text(pDX, IDCAccount, EditAccount);
+	DDX_Control(pDX, IDC_STATIC1, CStringName);
 }
 
 BEGIN_MESSAGE_MAP(CLoginDlg, CDialogEx)
@@ -78,10 +86,10 @@ BEGIN_MESSAGE_MAP(CLoginDlg, CDialogEx)
 	ON_BN_CLICKED(IDbtnLogin, &CLoginDlg::OnBnClickedbtnlogin)
 	ON_BN_CLICKED(IDbtnRegiste, &CLoginDlg::OnBnClickedbtnregiste)
 
-	//	ON_MESSAGE(WM_LOGIN, &CLoginDlg::OnLogin)
-	ON_MESSAGE(WM_LOGIN, &CLoginDlg::OnClicklogin)
+	ON_MESSAGE(WM_LOGIN,&CLoginDlg::OnClicklogin)
 	ON_MESSAGE(WM_REGISTER1, &CLoginDlg::OnRegister1)
 	ON_MESSAGE(WM_Search, &CLoginDlg::OnSearch)
+	ON_MESSAGE(WM_SENDMSG, &CLoginDlg::OnSendmsg)
 END_MESSAGE_MAP()
 
 
@@ -208,12 +216,37 @@ void CLoginDlg::OnReceive(int size, RecvInfo* szText)
 		::SendMessage(szText->hWnd, WM_REGISTER2, NULL, (LPARAM)&szText->reg_info);
 		break;
 	case RecvType::Search:
+	{
 		char* update = (char*)szText->searchFred.name;
 		while (size >= 28)
 		{
 			::SendMessage(szText->hWnd, WM_UPDATEFRND, NULL, (LPARAM)update);
 			size -= 28; update += 28;
 		}
+		break;
+	}
+	case RecvType::FRIENDMSG:
+	{
+		CString Name = szText->frdchat_msg.from;
+		if (ChatWindows.find(Name) != ChatWindows.end())
+		{
+			::SendMessage(ChatWindows[Name], WM_GETFRIENDMSG, NULL, (LPARAM)&szText->frdchat_msg);
+		}
+		// 如果不存在，就创建窗口
+		else
+		{
+			CPrivateChat* Chat = new CPrivateChat(Name);
+			Chat->Create(IDD_DIALOG1, this);
+			// 将窗口放入到字典中
+			ChatWindows[Name] = Chat->GetSafeHwnd();
+			Chat->SetWindowTextW(Name);
+			Chat->ShowWindow(SW_SHOW);
+			::SendMessage(ChatWindows[Name], WM_GETFRIENDMSG, NULL, (LPARAM)&szText->frdchat_msg);
+		}
+		break;
+	}
+	default:
+		MessageBox(0, 0, 0);
 		break;
 	}
 }
@@ -240,7 +273,7 @@ afx_msg LRESULT CLoginDlg::OnClicklogin(WPARAM wParam, LPARAM lParam)
 	{
 		MessageBox(L"登录成功", L"信息", MB_OK);
 		ShowWindow(SW_HIDE);
-		CFriendList* Lfriend = new CFriendList();
+		CFriendList* Lfriend = new CFriendList(CString(msg->nick));
 		Lfriend->Create(IDD_Dlg);
 		Lfriend->ShowWindow(SW_SHOW);
 	}
@@ -272,4 +305,12 @@ afx_msg LRESULT CLoginDlg::OnSearch(WPARAM wParam, LPARAM lParam)
 	m_socket.Send(&msg, sizeof(MsgInfo));
 	delete (MsgInfo*)lParam;
 	return 0;
+}
+
+//发送网络消息
+afx_msg LRESULT CLoginDlg::OnSendmsg(WPARAM wParam, LPARAM lParam)
+{
+	// 向服务器发送消息
+	return m_socket.Send((PVOID)lParam, sizeof(MsgInfo));
+
 }

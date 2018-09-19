@@ -6,6 +6,7 @@
 #include "PrivateDlg.h"
 #include "afxdialogex.h"
 #include "DataType.h"
+#include "PrivateChat.h"
 
 // CPrivateDlg 对话框
 
@@ -30,6 +31,7 @@ void CPrivateDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPrivateDlg, CDialogEx)
 	ON_MESSAGE(WM_UPDATEFRND, &CPrivateDlg::OnUpdatefrnd)
+	ON_NOTIFY(NM_DBLCLK, IDC_LIST1, &CPrivateDlg::OnDblclkList1)
 END_MESSAGE_MAP()
 
 
@@ -43,8 +45,8 @@ BOOL CPrivateDlg::OnInitDialog()
 	// TODO:  在此添加额外的初始化
 	CRect rc;
 	PrivateList.GetClientRect(rc);
-	//int Width = rc.Width();
-	PrivateList.InsertColumn(0, L"好友名单", 0, 200);
+	int Width = rc.Width();
+	PrivateList.InsertColumn(0, L"好友名单", 0, Width);
 	::PostMessage(AfxGetMainWnd()->m_hWnd, WM_Search, (WPARAM)m_hWnd, NULL);
 	return TRUE;
 }
@@ -59,6 +61,18 @@ afx_msg LRESULT CPrivateDlg::OnUpdatefrnd(WPARAM wParam, LPARAM lParam)
 	// 添加用户名到列表
 	// &update->name[1]  和Python相关的编码问题
 	PrivateList.InsertItem(index,CString(update->name));
-	// ff fe 4d 00 61 00 78 00 41 00【.?M.a.x.A】
+
 	return 0;
+}
+
+
+void CPrivateDlg::OnDblclkList1(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	// TODO: 在此添加控件通知处理程序代码
+	CString person = PrivateList.GetItemText(pNMItemActivate->iItem, 0);
+	CPrivateChat* m_prichat = new CPrivateChat(person);
+	m_prichat->Create(IDD_DIALOG1,this);
+	m_prichat->ShowWindow(SW_SHOW);
+	*pResult = 0;
 }

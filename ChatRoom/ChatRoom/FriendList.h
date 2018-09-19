@@ -10,7 +10,8 @@ class CFriendList : public CDialogEx
 	DECLARE_DYNAMIC(CFriendList)
 
 public:
-	CFriendList(CWnd* pParent = NULL);   // 标准构造函数
+	
+	CFriendList(CString m_title,CWnd* pParent = NULL);   // 标准构造函数
 	virtual ~CFriendList();
 
 // 对话框数据
@@ -23,11 +24,11 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-
+	CString title;
 	ListTab m_ListTab;
 	virtual BOOL OnInitDialog();
 	CMysocket m_socket;
 protected:
-
-	afx_msg LRESULT OnUpdatefrnd(WPARAM wParam, LPARAM lParam);
+public:
+	afx_msg void OnClose();
 };
