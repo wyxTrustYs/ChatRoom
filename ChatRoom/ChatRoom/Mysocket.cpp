@@ -48,9 +48,9 @@ void CMysocket::OnReceive(int nErrorCode)
 {
 	// TODO: 在此添加专用代码和/或调用基类
 	char s[2048] = { 0 };
-	Receive(s, sizeof(s));
+	int size = Receive(s, sizeof(s));
 	CLoginDlg* pDlg = (CLoginDlg*)AfxGetMainWnd();
-	pDlg->OnReceive((RecvInfo*)s);
+	pDlg->OnReceive(size,(RecvInfo*)s);
 	CSocket::OnReceive(nErrorCode);
 }
 

@@ -3,13 +3,14 @@ import pymysql
 import struct
 import enum
 
+
 class Mysql(object):
 
     def __init__(self):
         try:
             # 主机名 用户名 密码 端口号 数据库名
             self.mysql = pymysql.connect(host='127.0.0.1', db='chatroom',
-                user='root', password='wang371426', port=3306)
+                                         user='root', password='wang371426', port=3306)
 
             # 使用游标进行数据库的操作
             self.cur = self.mysql.cursor()
@@ -17,7 +18,6 @@ class Mysql(object):
             # 项目中，使用异常处理一定要输出异常信息
             # 如果不使用异常处理，会导致异常位置难以发现
             print(msg)
-
 
     def insert(self, mysql):
         try:
@@ -43,7 +43,19 @@ class Mysql(object):
             self.mysql.rollback()
             print(msg)
 
+    def QuerySql(self, sql):
+        try:
+            self.cur.execute(sql)
+            # self.cursor.execute(sql)
+            return self.cur.fetchall()
+        except Exception as Msg:
+            print(Msg)
+            return None
+
+
 class SendType(enum.Enum):
     RegisterMsg = 0
+
+
 hwnd = 1
 struct.pack('iii20s', SendType.RegisterMsg.value, hwnd, 0, '用户重名'.encode('GBK'))

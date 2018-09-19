@@ -5,6 +5,7 @@
 #define WM_REGISTER2 WM_USER + 2
 #define WM_LOGIN WM_USER + 3
 #define WM_Search WM_USER + 4
+#define WM_UPDATEFRND WM_USER + 5
 // 强枚举类型
 enum class MsgType
 {
@@ -50,8 +51,11 @@ struct MsgInfo
 		LoginInfo login_info;
 	};
 };
-
-
+//返回更新好友列表的消息
+struct RecvSearch
+{
+	char name[40];
+};
 
 // 注册是否成功
 struct RecvReg
@@ -74,6 +78,7 @@ struct RecvInfo
 	union {
 		RecvReg reg_info;
 		RecvLogin login_info;
+		RecvSearch searchFred;
 		char str[100];
 	};
 };

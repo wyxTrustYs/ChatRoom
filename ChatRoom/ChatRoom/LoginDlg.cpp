@@ -21,12 +21,12 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
-// 对话框数据
+	// 对话框数据
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 // 实现
@@ -55,8 +55,8 @@ END_MESSAGE_MAP()
 
 CLoginDlg::CLoginDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_LoginDlg, pParent)
-	, EditPsd(_T(""))
-	, EditAccount(_T(""))
+	, EditPsd(_T("1234"))
+	, EditAccount(_T("1234"))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -78,10 +78,10 @@ BEGIN_MESSAGE_MAP(CLoginDlg, CDialogEx)
 	ON_BN_CLICKED(IDbtnLogin, &CLoginDlg::OnBnClickedbtnlogin)
 	ON_BN_CLICKED(IDbtnRegiste, &CLoginDlg::OnBnClickedbtnregiste)
 
-//	ON_MESSAGE(WM_LOGIN, &CLoginDlg::OnLogin)
-ON_MESSAGE(WM_LOGIN, &CLoginDlg::OnClicklogin)
-ON_MESSAGE(WM_REGISTER1, &CLoginDlg::OnRegister1)
-ON_MESSAGE(WM_Search, &CLoginDlg::OnSearch)
+	//	ON_MESSAGE(WM_LOGIN, &CLoginDlg::OnLogin)
+	ON_MESSAGE(WM_LOGIN, &CLoginDlg::OnClicklogin)
+	ON_MESSAGE(WM_REGISTER1, &CLoginDlg::OnRegister1)
+	ON_MESSAGE(WM_Search, &CLoginDlg::OnSearch)
 END_MESSAGE_MAP()
 
 
@@ -119,7 +119,7 @@ BOOL CLoginDlg::OnInitDialog()
 	// TODO: 在此添加额外的初始化代码
 
 	// 连接到服务器， 主机和端口
-	if (!m_socket.Connect(L"192.168.2.154",8000))
+	if (!m_socket.Connect(L"192.168.2.154", 8000))
 	{
 		MessageBox(L"服务器连接失败", L"错误信息", MB_OK | MB_ICONERROR);
 		ExitProcess(-1);
@@ -192,11 +192,11 @@ void CLoginDlg::OnBnClickedbtnlogin()
 
 	// 发送登录消息到服务器
 	m_socket.Send(&msg, sizeof(MsgInfo));
-	
+
 }
 
 
-void CLoginDlg::OnReceive(RecvInfo* szText)
+void CLoginDlg::OnReceive(int size, RecvInfo* szText)
 {
 	switch (szText->type)
 	{
@@ -206,6 +206,14 @@ void CLoginDlg::OnReceive(RecvInfo* szText)
 		break;
 	case RecvType::REGISTER:
 		::SendMessage(szText->hWnd, WM_REGISTER2, NULL, (LPARAM)&szText->reg_info);
+		break;
+	case RecvType::Search:
+		char* update = (char*)szText->searchFred.name;
+		while (size >= 28)
+		{
+			::SendMessage(szText->hWnd, WM_UPDATEFRND, NULL, (LPARAM)update);
+			size -= 28; update += 28;
+		}
 		break;
 	}
 }
@@ -233,7 +241,8 @@ afx_msg LRESULT CLoginDlg::OnClicklogin(WPARAM wParam, LPARAM lParam)
 		MessageBox(L"登录成功", L"信息", MB_OK);
 		ShowWindow(SW_HIDE);
 		CFriendList* Lfriend = new CFriendList();
-		Lfriend->DoModal();
+		Lfriend->Create(IDD_Dlg);
+		Lfriend->ShowWindow(SW_SHOW);
 	}
 	else
 	{
@@ -257,7 +266,10 @@ afx_msg LRESULT CLoginDlg::OnRegister1(WPARAM wParam, LPARAM lParam)
 
 afx_msg LRESULT CLoginDlg::OnSearch(WPARAM wParam, LPARAM lParam)
 {
-	m_socket.Send((void*)2,4);
+	MsgInfo msg = { MsgType::Search };
+	msg.hWnd = (HWND)wParam;
+	memcpy(msg.login_info.name, EditAccount.GetBuffer(), EditAccount.GetLength() * 2);
+	m_socket.Send(&msg, sizeof(MsgInfo));
 	delete (MsgInfo*)lParam;
 	return 0;
 }

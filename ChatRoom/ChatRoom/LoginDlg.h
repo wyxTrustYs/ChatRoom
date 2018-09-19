@@ -47,7 +47,7 @@ public:
 	CString EditAccount;
 	CMysocket m_socket;
 	afx_msg void OnBnClickedbtnlogin();
-	void OnReceive(RecvInfo* szText);
+	void OnReceive(int size,RecvInfo* szText);
 	afx_msg void OnBnClickedbtnregiste();
 protected:
 	afx_msg LRESULT OnClicklogin(WPARAM wParam, LPARAM lParam);

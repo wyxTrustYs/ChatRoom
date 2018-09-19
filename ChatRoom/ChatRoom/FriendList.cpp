@@ -6,8 +6,8 @@
 #include "FriendList.h"
 #include "afxdialogex.h"
 #include "PrivateDlg.h"
-#include "GroupList.h"
 #include "resource.h"
+#include "DataType.h"
 // CFriendList ¶Ô»°¿ò
 
 IMPLEMENT_DYNAMIC(CFriendList, CDialogEx)
@@ -31,7 +31,8 @@ void CFriendList::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CFriendList, CDialogEx)
 
-//	ON_MESSAGE(WM_SearchFriendAndGroup, &CFriendList::OnSearchfriendandgroup)
+
+	ON_MESSAGE(WM_UPDATEFRND, &CFriendList::OnUpdatefrnd)
 END_MESSAGE_MAP()
 
 
@@ -46,24 +47,30 @@ BOOL CFriendList::OnInitDialog()
 	m_ListTab.InsertItem(1, L"ÈºÁÄ");
 
 	m_ListTab.m_dia[0] = new CPrivateDlg();
-	m_ListTab.m_dia[1] = new CGroupList();
+	//m_ListTab.m_dia[1] = new ();
 
 	m_ListTab.m_dia[0]->Create(IDD_DIALOGSin, &m_ListTab);
-	m_ListTab.m_dia[1]->Create(IDD_DIALOGGroup, &m_ListTab);
+	//m_ListTab.m_dia[1]->Create(IDD_DIALOGGroup, &m_ListTab);
 
 	CRect rc;
 	m_ListTab.GetClientRect(rc);
 	rc.DeflateRect(2, 24, 3, 2);
 	m_ListTab.m_dia[0]->MoveWindow(rc);
-	m_ListTab.m_dia[1]->MoveWindow(rc);
+	//m_ListTab.m_dia[1]->MoveWindow(rc);
 
 	m_ListTab.m_dia[0]->ShowWindow(SW_SHOW);
-	m_ListTab.m_dia[0]->ShowWindow(SW_HIDE);
+	//m_ListTab.m_dia[0]->ShowWindow(SW_HIDE);
 
 
-	::PostMessage(AfxGetMainWnd()->m_hWnd, WM_Search, (WPARAM)m_hWnd, NULL);
+	//::PostMessage(AfxGetMainWnd()->m_hWnd, WM_Search, (WPARAM)m_hWnd, NULL);
 
 	return TRUE;  
 }
 
 
+
+afx_msg LRESULT CFriendList::OnUpdatefrnd(WPARAM wParam, LPARAM lParam)
+{
+
+	return 0;
+}

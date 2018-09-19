@@ -11,11 +11,13 @@ Userdict = {}
 class MsgType(enum.Enum):
     RegisterMsg = 0
     LoginMsg = 1
+    Search = 2
 
 
 class SendType(enum.Enum):
     RegisterMsg = 0,
     LoginMsg = 1
+    Search = 2
 
 
 # 添加服务器类
@@ -59,7 +61,7 @@ class Server(object):
                 print(msg)
                 print(client.getsockname(), '退出了服务器')
                 self.sql.insert("UPDATE user SET UserStatus=0 "
-                                "WHERE UserName='%s' " % Userdict[client])
+                                "WHERE UserId=%s " % Userdict[client])
                 Userdict.pop(client)
                 print(Userdict)
                 client.close()
@@ -90,26 +92,41 @@ class Server(object):
         else:
             client.send(struct.pack('iii20s', SendType.RegisterMsg.value[0], hwnd, 0, '已存在的用户名'.encode('GBK')))
 
-    # f返回登录信息
+    # 返回登录信息
     def login(self, client, msg):
         hwnd, name, pswd = struct.unpack('i40s40s', msg[0:84])
         # 对解包出的数据进行解码
         name = name.decode('utf16').rstrip('\x00')
         pswd = pswd.decode('utf16').rstrip('\x00')
         # 查看用户名是否匹配
-        if self.sql.select("SELECT * FROM user WHERE UserName='%s' "
+        if self.sql.select("SELECT * FROM user WHERE UserId=%s "
                            "AND UserPassword=MD5('%s')" % (name, pswd)) != 0:
             self.sql.insert("UPDATE user SET UserStatus=1 "
-                            "WHERE UserName='%s' AND UserPassword=MD5('%s')" % (name, pswd))
+                            "WHERE UserId=%s AND UserPassword=MD5('%s')" % (name, pswd))
             client.send(struct.pack('iii20s', SendType.LoginMsg.value, hwnd, 1, '登录成功'.encode('GBK')))
             Userdict[client] = name
         else:
             client.send(struct.pack('iii20s', SendType.LoginMsg.value, hwnd, 0, '用户名或密码错误'.encode('GBK')))
 
+    def search(self, client, msg):
+        hwnd, name = struct.unpack('i40s', msg[0:44])
+        # 对解包出的数据进行解码
+        name = name.decode('utf16').rstrip('\x00')
+        Lnum = []
+        friend = self.sql.QuerySql("SELECT idb FROM friend WHERE ida=%s " % name)
+        for num in friend:
+            nickname = self.sql.QuerySql("SELECT UserName FROM user WHERE UserId=%s " % num[0])
+            print(nickname[0][0])
+            client.send(struct.pack('ii20s', SendType.Search.value, hwnd, nickname[0][0].encode('gbk')))
+            Lnum.append(num[0])
+
+        #print(Lnum)
+
     # 一个字典，包含的是对应的消息处理函数
     dictfun = {
         0: register,
-        1: login
+        1: login,
+        2: search
     }
 
 

@@ -57,17 +57,14 @@
     <ClInclude Include="PrivateDlg.h">
       <Filter>列表类</Filter>
     </ClInclude>
-    <ClInclude Include="GroupList.h">
-      <Filter>列表类</Filter>
-    </ClInclude>
     <ClInclude Include="LoginDlg.h">
       <Filter>登陆</Filter>
     </ClInclude>
-    <ClInclude Include="PrivateList.h">
-      <Filter>列表类</Filter>
-    </ClInclude>
     <ClInclude Include="Registe.h">
       <Filter>注册</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupDlg.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -89,17 +86,14 @@
     <ClCompile Include="PrivateDlg.cpp">
       <Filter>列表类</Filter>
     </ClCompile>
-    <ClCompile Include="GroupList.cpp">
-      <Filter>列表类</Filter>
-    </ClCompile>
     <ClCompile Include="LoginDlg.cpp">
       <Filter>登陆</Filter>
     </ClCompile>
-    <ClCompile Include="PrivateList.cpp">
-      <Filter>列表类</Filter>
-    </ClCompile>
     <ClCompile Include="Registe.cpp">
       <Filter>注册</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupDlg.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

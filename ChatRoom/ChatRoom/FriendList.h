@@ -29,5 +29,5 @@ public:
 	CMysocket m_socket;
 protected:
 
-//	afx_msg LRESULT OnSearchfriendandgroup(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnUpdatefrnd(WPARAM wParam, LPARAM lParam);
 };

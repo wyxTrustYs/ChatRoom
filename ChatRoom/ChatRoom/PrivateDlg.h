@@ -1,4 +1,5 @@
 #pragma once
+#include "afxcmn.h"
 
 
 // CPrivateDlg 对话框
@@ -20,4 +21,9 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+public:
+	CListCtrl PrivateList;
+	virtual BOOL OnInitDialog();
+protected:
+	afx_msg LRESULT OnUpdatefrnd(WPARAM wParam, LPARAM lParam);
 };

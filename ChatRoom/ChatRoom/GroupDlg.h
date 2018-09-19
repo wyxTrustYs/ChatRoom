@@ -1,15 +1,15 @@
 #pragma once
 
 
-// CGroupList 对话框
+// GroupDlg 对话框
 
-class CGroupList : public CDialogEx
+class GroupDlg : public CDialogEx
 {
-	DECLARE_DYNAMIC(CGroupList)
+	DECLARE_DYNAMIC(GroupDlg)
 
 public:
-	CGroupList(CWnd* pParent = NULL);   // 标准构造函数
-	virtual ~CGroupList();
+	GroupDlg(CWnd* pParent = NULL);   // 标准构造函数
+	virtual ~GroupDlg();
 
 // 对话框数据
 #ifdef AFX_DESIGN_TIME
