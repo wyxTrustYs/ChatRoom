@@ -1,6 +1,7 @@
 #pragma once
 #include "ListTab.h"
 #include "Mysocket.h"
+#include "afxwin.h"
 
 
 // CFriendList ¶Ô»°¿ò
@@ -31,4 +32,7 @@ public:
 protected:
 public:
 	afx_msg void OnClose();
+	CString CSearch;
+	CButton AddFriend;
+	afx_msg void OnBnClickedButton1();
 };

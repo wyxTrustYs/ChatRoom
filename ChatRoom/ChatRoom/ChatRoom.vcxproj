@@ -184,6 +184,7 @@
     <ClInclude Include="ChatRoom.h" />
     <ClInclude Include="DataType.h" />
     <ClInclude Include="FriendList.h" />
+    <ClInclude Include="GroupChat.h" />
     <ClInclude Include="GroupDlg.h" />
     <ClInclude Include="ListTab.h" />
     <ClInclude Include="LoginDlg.h" />
@@ -198,6 +199,7 @@
   <ItemGroup>
     <ClCompile Include="ChatRoom.cpp" />
     <ClCompile Include="FriendList.cpp" />
+    <ClCompile Include="GroupChat.cpp" />
     <ClCompile Include="GroupDlg.cpp" />
     <ClCompile Include="ListTab.cpp" />
     <ClCompile Include="LoginDlg.cpp" />

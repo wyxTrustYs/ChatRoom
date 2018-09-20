@@ -72,6 +72,9 @@
     <ClInclude Include="PrivateChat.h">
       <Filter>聊天对话框</Filter>
     </ClInclude>
+    <ClInclude Include="GroupChat.h">
+      <Filter>聊天对话框</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChatRoom.cpp">
@@ -102,6 +105,9 @@
       <Filter>列表类</Filter>
     </ClCompile>
     <ClCompile Include="PrivateChat.cpp">
+      <Filter>聊天对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupChat.cpp">
       <Filter>聊天对话框</Filter>
     </ClCompile>
   </ItemGroup>

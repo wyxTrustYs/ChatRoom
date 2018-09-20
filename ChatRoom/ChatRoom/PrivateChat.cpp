@@ -92,7 +92,8 @@ void CPrivateChat::OnBnClickedSend()
 	CString Time;
 	Time.Format(L"%d-%2d-%2d %2d:%2d:%2d", now.wYear, now.wMonth, now.wDay,
 		now.wHour, now.wMinute, now.wSecond);
-
+	USES_CONVERSION;
+	
 	// 组合语句加入到编辑框
 	PriTextView = PriTextView + L"你说(" + Time + L"):\r\n    " + PriEditView + L"\r\n";
 
@@ -103,6 +104,7 @@ void CPrivateChat::OnBnClickedSend()
 	MsgInfo msg = { MsgType::FRIENDMSG, m_hWnd };
 	memcpy(msg.frdchat_msg.msg, PriEditView.GetBuffer(), PriEditView.GetLength() * 2);
 	memcpy(msg.frdchat_msg.from, main->EditAccount.GetBuffer(), main->EditAccount.GetLength() * 2);
+	
 
 	// 获取发送对象，即窗口名
 	CString To;

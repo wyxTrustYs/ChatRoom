@@ -4,6 +4,7 @@ import socket
 import struct
 import threading
 import minsql
+import time
 
 Userdict = {}
 
@@ -13,13 +14,18 @@ class MsgType(enum.Enum):
     LoginMsg = 1
     Search = 2
     FriendChat = 3
+    SearchGroup = 4
+    UserInGroup = 5
+    GroupMsg = 6
 
 
 class SendType(enum.Enum):
-    RegisterMsg = 0,
+    RegisterMsg = 0
     LoginMsg = 1
     Search = 2
     FriendChat = 3
+    SearchGroup = 4
+    UserInGroup = 5
 
 
 # 添加服务器类
@@ -68,7 +74,11 @@ class Server(object):
                 self.sql.insert("UPDATE user SET UserStatus=0 "
                                 "WHERE UserId=%s " % Userdict[client])
                 Userdict.pop(client)
-                print(Userdict)
+                for name in Server.dictlist.keys():
+                    if Server.dictlist[name] == client:
+                        print('[%s]退出聊天: %s' % (name, msg))
+                        Server.dictlist.pop(name)
+                        break
                 client.close()
                 break
 
@@ -147,12 +157,59 @@ class Server(object):
             # sql = "INSERT INTO msg_log VALUE('%s', '%s', '%s', now())" % (user1, user2, message)
             # self.sql.insert(sql)
 
+    def searchgroup(self, client, msg):
+        time.sleep(0.5)
+        hwnd, name = struct.unpack('i40s', msg[0:44])
+        # 对解包出的数据进行解码
+        name = name.decode('utf16').rstrip('\x00')
+        Lnum = []
+        group = self.sql.QuerySql("SELECT groupid FROM group_user WHERE userid=%s " % name)
+        for num in group:
+            groupname = self.sql.QuerySql("SELECT GroupName FROM groupname WHERE GroupId=%s " % num[0])
+            groupid = str(num[0])
+            client.send(struct.pack('ii10s20s', SendType.SearchGroup.value, hwnd, groupid.encode('gbk'),
+                                    groupname[0][0].encode('gbk')))
+            Lnum.append(num[0])
+
+    def useringroup(self, client, msg):
+        hwnd, id = struct.unpack('i10s', msg[0:14])
+        id = id.decode('utf16').rstrip('\x00')
+        userid = self.sql.QuerySql("SELECT userid FROM group_user WHERE groupid=%s " % id)
+        for num in userid:
+            username = self.sql.QuerySql("SELECT UserName FROM user WHERE UserId=%s " % num[0])
+
+            client.send(struct.pack('ii10s10s', SendType.UserInGroup.value, hwnd, str(num[0]).encode('gbk'),
+                                    username[0][0].encode('gbk')))
+
+    def groupmsg(self, client, msg):
+        hwnd, user, group, message = struct.unpack('i40s40s200s', msg[0:284])
+        # 获取需要发送到的用户名
+        user = user.decode('utf16').rstrip('\x00')
+        group = group.decode('utf16').rstrip('\x00')
+        message = message.decode('utf16').rstrip('\x00')
+
+        print(user, group)
+        # 查找所有当前群组中的人
+        len, result = self.sql.getresult("SELECT userid FROM group_user WHERE groupid =%s" % group)
+        print(len, result)
+        # 如果有人在当前的在线列表中
+        for index in range(len):
+            namestr = str(result[index][0])
+            if namestr in Server.dictlist:
+                print(Server.dictlist[namestr])
+                if Server.dictlist[namestr] != client:
+                    print(result[index][0])
+                    Server.dictlist[namestr].send(b'\x06\x00\x00\x00' + msg)
+
     # 一个字典，包含的是对应的消息处理函数
     dictfun = {
         0: register,
         1: login,
         2: search,
-        3: friendchat
+        3: friendchat,
+        4: searchgroup,
+        5: useringroup,
+        6: groupmsg
     }
 
 

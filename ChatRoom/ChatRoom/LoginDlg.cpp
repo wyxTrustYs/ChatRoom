@@ -39,6 +39,7 @@ protected:
 
 public:
 	//	afx_msg void OnClose();
+//	virtual BOOL OnInitDialog();
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
@@ -90,6 +91,7 @@ BEGIN_MESSAGE_MAP(CLoginDlg, CDialogEx)
 	ON_MESSAGE(WM_REGISTER1, &CLoginDlg::OnRegister1)
 	ON_MESSAGE(WM_Search, &CLoginDlg::OnSearch)
 	ON_MESSAGE(WM_SENDMSG, &CLoginDlg::OnSendmsg)
+	ON_MESSAGE(WM_SearchGroup, &CLoginDlg::OnSearchgroup)
 END_MESSAGE_MAP()
 
 
@@ -208,16 +210,16 @@ void CLoginDlg::OnReceive(int size, RecvInfo* szText)
 {
 	switch (szText->type)
 	{
-	case RecvType::LOGIN:
+	case MsgType::LOGIN:
 		// 发送消息告诉主窗口是否成功
 		::SendMessage(szText->hWnd, WM_LOGIN, NULL, (LPARAM)&szText->login_info);
 		break;
-	case RecvType::REGISTER:
+	case MsgType::REGISTER:
 		::SendMessage(szText->hWnd, WM_REGISTER2, NULL, (LPARAM)&szText->reg_info);
 		break;
-	case RecvType::Search:
+	case MsgType::Search:
 	{
-		char* update = (char*)szText->searchFred.name;
+		char* update = (char*)szText->searchFred.ID;
 		while (size >= 28)
 		{
 			::SendMessage(szText->hWnd, WM_UPDATEFRND, NULL, (LPARAM)update);
@@ -225,7 +227,7 @@ void CLoginDlg::OnReceive(int size, RecvInfo* szText)
 		}
 		break;
 	}
-	case RecvType::FRIENDMSG:
+	case MsgType::FRIENDMSG:
 	{
 		CString Name = szText->frdchat_msg.from;
 		if (ChatWindows.find(Name) != ChatWindows.end())
@@ -242,6 +244,46 @@ void CLoginDlg::OnReceive(int size, RecvInfo* szText)
 			Chat->SetWindowTextW(Name);
 			Chat->ShowWindow(SW_SHOW);
 			::SendMessage(ChatWindows[Name], WM_GETFRIENDMSG, NULL, (LPARAM)&szText->frdchat_msg);
+		}
+		break;
+	}
+	case MsgType::SearchGroup:
+	{
+		char* update = (char*)szText->searchFred.ID;
+		while (size >= 28)
+		{
+			::SendMessage(szText->hWnd, WM_UPDATEGROUP, NULL, (LPARAM)update);
+			size -= 28; update += 28;
+		}
+		break;
+	}
+	case MsgType::UserInGroup:
+	{
+		char* update = (char*)szText->searchFred.ID;
+		while (size >= 28)
+		{
+			::SendMessage(szText->hWnd, WM_UPDATEMEMBERINGRUP, NULL, (LPARAM)update);
+			size -= 28; update += 28;
+		}
+		break;
+	}
+	case MsgType::GROUPMSG:
+	{
+		CString groupid = szText->frdchat_msg.to;
+		if (ChatWindows.find(groupid) != ChatWindows.end())
+		{
+			::SendMessage(ChatWindows[groupid], WM_GETGROUPMSG, NULL, (LPARAM)&szText->frdchat_msg);
+		}
+		// 如果不存在，就创建窗口
+		else
+		{
+			CGroupChat* Chat = new CGroupChat(L"name",groupid);
+			Chat->Create(IDD_DIALOGGrouChat, this);
+			// 将窗口放入到字典中
+			ChatWindows[groupid] = Chat->GetSafeHwnd();
+			//Chat->SetWindowTextW(CString(L"群聊:") + Name);
+			Chat->ShowWindow(SW_SHOW);
+			::SendMessage(ChatWindows[groupid], WM_GETGROUPMSG, NULL, (LPARAM)&szText->frdchat_msg);
 		}
 		break;
 	}
@@ -314,3 +356,15 @@ afx_msg LRESULT CLoginDlg::OnSendmsg(WPARAM wParam, LPARAM lParam)
 	return m_socket.Send((PVOID)lParam, sizeof(MsgInfo));
 
 }
+
+
+afx_msg LRESULT CLoginDlg::OnSearchgroup(WPARAM wParam, LPARAM lParam)
+{
+	MsgInfo msg = { MsgType::SearchGroup };
+	msg.hWnd = (HWND)wParam;
+	memcpy(msg.login_info.name, EditAccount.GetBuffer(), EditAccount.GetLength() * 2);
+	m_socket.Send(&msg, sizeof(MsgInfo));
+	delete (MsgInfo*)lParam;
+	return 0;
+}
+

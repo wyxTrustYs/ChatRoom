@@ -62,7 +62,7 @@ afx_msg LRESULT CPrivateDlg::OnUpdatefrnd(WPARAM wParam, LPARAM lParam)
 	// 添加用户名到列表
 	// &update->name[1]  和Python相关的编码问题
 	PrivateList.InsertItem(index,CString(update->nick));
-	PrivateList.SetItemText(index, 1, CString(update->name));
+	PrivateList.SetItemText(index, 1, CString(update->ID));
 	return 0;
 }
 

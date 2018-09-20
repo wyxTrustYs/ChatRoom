@@ -8,22 +8,20 @@
 #define WM_UPDATEFRND WM_USER + 5
 #define WM_SENDMSG WM_USER + 6
 #define WM_GETFRIENDMSG WM_USER + 7
+#define WM_SearchGroup WM_USER + 8
+#define WM_UPDATEGROUP WM_USER + 9
+#define WM_UPDATEMEMBERINGRUP WM_USER + 10
+#define WM_GETGROUPMSG WM_USER + 11
 // 强枚举类型
 enum class MsgType
 {
 	REGISTER = 0,
 	LOGIN = 1,
 	Search = 2,
-	FRIENDMSG = 3
-};
-
-// 强枚举类型
-enum class RecvType
-{
-	REGISTER = 0,
-	LOGIN = 1,
-	Search = 2,
-	FRIENDMSG = 3
+	FRIENDMSG = 3,
+	SearchGroup = 4,
+	UserInGroup = 5,
+	GROUPMSG = 6
 };
 
 // 保存注册信息的结构体
@@ -51,6 +49,13 @@ struct FrdChatMsg
 	WCHAR msg[100];// 消息
 };
 
+// 更新列表的消息
+struct UpdateFrd
+{
+	// 自己的名字或好友的名字
+	WCHAR name[20];
+};
+
 // 用于保存所有信息的结构体
 struct MsgInfo
 {
@@ -62,13 +67,16 @@ struct MsgInfo
 		RegisterInfo reg_info;
 		LoginInfo login_info;
 		FrdChatMsg frdchat_msg;
+		UpdateFrd updatefrd_msg;
+		FrdChatMsg groupchat_msg;
+		char groupid[10];
 	};
 };
 //返回更新好友列表的消息
 struct RecvSearch
 {
-	char name[10];
-	char nick[10];
+	char ID[10];
+	char nick[20];
 };
 
 
@@ -92,7 +100,7 @@ struct RecvLogin
 // 用于保存所有接收到的信息的结构体
 struct RecvInfo
 {
-	RecvType type;		// 枚举
+	MsgType type;		// 枚举
 	HWND hWnd;
 	// 保存所有信息的结构体
 	// 它的大小是最大类型的大小
@@ -100,6 +108,7 @@ struct RecvInfo
 		RecvReg reg_info;
 		RecvLogin login_info;
 		RecvSearch searchFred;
+		UpdateFrd updatefrd_msg;
 		FrdChatMsg frdchat_msg;
 		char str[100];
 	};

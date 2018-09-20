@@ -52,6 +52,16 @@ class Mysql(object):
             print(Msg)
             return None
 
+    def getresult(self, mysql):
+        try:
+            self.cur.execute(mysql)
+            s = self.cur.fetchall()
+            return len(s), s
+
+        except Exception as msg:
+            # 防止数据被损坏
+            self.mysql.rollback()
+            print(msg)
 
 class SendType(enum.Enum):
     RegisterMsg = 0

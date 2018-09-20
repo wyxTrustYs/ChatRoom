@@ -24,4 +24,8 @@ protected:
 public:
 	CListCtrl CGroupList;
 	virtual BOOL OnInitDialog();
+protected:
+	afx_msg LRESULT OnUpdategroup(WPARAM wParam, LPARAM lParam);
+public:
+	afx_msg void OnDblclkListgroup(NMHDR *pNMHDR, LRESULT *pResult);
 };

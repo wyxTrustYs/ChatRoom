@@ -15,6 +15,7 @@ IMPLEMENT_DYNAMIC(CFriendList, CDialogEx)
 
 CFriendList::CFriendList(CString m_title,CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_Dlg, pParent)
+	, CSearch(_T(""))
 {
 	this->title = m_title;
 }
@@ -27,12 +28,15 @@ void CFriendList::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_TAB3, m_ListTab);
+	DDX_Text(pDX, IDC_EDIT1, CSearch);
+	DDX_Control(pDX, IDC_BUTTON1, AddFriend);
 }
 
 
 BEGIN_MESSAGE_MAP(CFriendList, CDialogEx)
 
 	ON_WM_CLOSE()
+	ON_BN_CLICKED(IDC_BUTTON1, &CFriendList::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -73,4 +77,11 @@ void CFriendList::OnClose()
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	ExitProcess(0);
 	CDialogEx::OnClose();
+}
+
+
+void CFriendList::OnBnClickedButton1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+
 }

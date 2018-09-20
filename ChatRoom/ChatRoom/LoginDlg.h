@@ -6,6 +6,7 @@
 #include "afxwin.h"
 #include "Mysocket.h"
 #include "DataType.h"
+#include "GroupChat.h"
 typedef struct
 {
 	int cuserlen;
@@ -46,6 +47,7 @@ public:
 	CString EditPsd;
 	CString EditAccount;
 	CMysocket m_socket;
+	CGroupChat *m_group;
 	afx_msg void OnBnClickedbtnlogin();
 	void OnReceive(int size,RecvInfo* szText);
 	afx_msg void OnBnClickedbtnregiste();
@@ -53,8 +55,10 @@ protected:
 	afx_msg LRESULT OnClicklogin(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnRegister1(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnSearch(WPARAM wParam, LPARAM lParam);
-//	afx_msg LRESULT OnFriendmsg(WPARAM wParam, LPARAM lParam);
+
 	afx_msg LRESULT OnSendmsg(WPARAM wParam, LPARAM lParam);
 public:
 	CStatic CStringName;
+protected:
+	afx_msg LRESULT OnSearchgroup(WPARAM wParam, LPARAM lParam);
 };

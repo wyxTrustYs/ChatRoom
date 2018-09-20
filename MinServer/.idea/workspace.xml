@@ -2,8 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df24b75f-10d5-42c5-8893-ab8236df1d9b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.aps" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.aps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.rc" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.rc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/ChatRoom.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/DataType.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/DataType.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/FriendList.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/FriendList.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/FriendList.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/FriendList.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/GroupDlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/GroupDlg.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/GroupDlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/GroupDlg.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/LoginDlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/LoginDlg.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/LoginDlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/LoginDlg.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/PrivateChat.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/PrivateChat.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/PrivateDlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/PrivateDlg.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ChatRoom/resource.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ChatRoom/resource.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatRoom/ipch/CHATROOM-a9dc15ec/CHATROOM-e1685d49.ipch" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatRoom/ipch/CHATROOM-a9dc15ec/CHATROOM-e1685d49.ipch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minsql.py" beforeDir="false" afterPath="$PROJECT_DIR$/minsql.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,32 +62,33 @@
     <session id="-1746667791">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.27" value="1" />
           <entry key="project.open.time.58" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="846" />
+          <entry key="py" value="1552" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="846" />
+          <entry key="Python" value="1552" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="8" />
+          <entry key="py" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="8" />
+          <entry key="Python" value="10" />
         </counts>
       </usages-collector>
     </session>
@@ -81,30 +98,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="141" selection-end-column="20" />
+            <state relative-caret-position="296">
+              <caret line="201" column="43" selection-start-line="201" selection-start-column="43" selection-end-line="201" selection-end-column="43" />
               <folding>
                 <element signature="e#15#26#0" expanded="true" />
-                <marker date="1537406031542" expanded="true" signature="4717:4726" ph="..." />
+                <marker date="1537441612744" expanded="true" signature="5041:5050" ph="..." />
+                <marker date="1537441612744" expanded="true" signature="6343:6834" ph="..." />
+                <marker date="1537441612744" expanded="true" signature="6871:7683" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/threading.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="915" selection-start-line="915" selection-end-line="915" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/types.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3243">
-              <caret line="141" column="34" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -112,8 +113,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/minsql.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1081">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="444">
+              <caret line="63" column="22" lean-forward="true" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
               <folding>
                 <element signature="e#16#30#0" expanded="true" />
               </folding>
@@ -250,8 +251,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.12172573" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.32973805" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.24807397" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.09707242" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -303,30 +304,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://E:/15PB培训笔记/课上代码/MiniChat V3.0/MiniServer/MiniServer.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1408">
+          <caret line="915" selection-start-line="915" selection-end-line="915" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/minsql.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1081">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="444">
+          <caret line="63" column="22" lean-forward="true" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
           <folding>
             <element signature="e#16#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/threading.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/pymysql/connections.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="915" selection-start-line="915" selection-end-line="915" />
+        <state relative-caret-position="126">
+          <caret line="744" selection-start-line="744" selection-end-line="744" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="141" selection-end-column="20" />
+        <state relative-caret-position="296">
+          <caret line="201" column="43" selection-start-line="201" selection-start-column="43" selection-end-line="201" selection-end-column="43" />
           <folding>
             <element signature="e#15#26#0" expanded="true" />
-            <marker date="1537406031542" expanded="true" signature="4717:4726" ph="..." />
+            <marker date="1537441612744" expanded="true" signature="5041:5050" ph="..." />
+            <marker date="1537441612744" expanded="true" signature="6343:6834" ph="..." />
+            <marker date="1537441612744" expanded="true" signature="6871:7683" ph="..." />
           </folding>
         </state>
       </provider>
