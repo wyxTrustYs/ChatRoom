@@ -67,7 +67,8 @@ struct MsgInfo
 //返回更新好友列表的消息
 struct RecvSearch
 {
-	char name[40];
+	char name[10];
+	char nick[10];
 };
 
 

@@ -32,4 +32,5 @@ protected:
 public:
 	afx_msg void OnBnClickedSend();
 
+	afx_msg void OnClose();
 };

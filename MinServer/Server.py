@@ -110,9 +110,10 @@ class Server(object):
                             "WHERE UserId=%s AND UserPassword=MD5('%s')" % (name, pswd))
             nickname = self.sql.QuerySql("SELECT UserName FROM user WHERE UserId=%s " % name)
             nick = nickname[0][0]
-            client.send(struct.pack('iii20s20s', SendType.LoginMsg.value, hwnd, 1, '登录成功'.encode('GBK'),nick.encode('GBK')))
+            client.send(
+                struct.pack('iii20s20s', SendType.LoginMsg.value, hwnd, 1, '登录成功'.encode('GBK'), nick.encode('GBK')))
 
-            Server.dictlist[nick] = client
+            Server.dictlist[name] = client
             Userdict[client] = name
         else:
             client.send(struct.pack('iii20s', SendType.LoginMsg.value, hwnd, 0, '用户名或密码错误'.encode('GBK')))
@@ -125,7 +126,9 @@ class Server(object):
         friend = self.sql.QuerySql("SELECT idb FROM friend WHERE ida=%s " % name)
         for num in friend:
             nickname = self.sql.QuerySql("SELECT UserName FROM user WHERE UserId=%s " % num[0])
-            client.send(struct.pack('ii20s', SendType.Search.value, hwnd, nickname[0][0].encode('gbk')))
+            nameid = str(num[0])
+            client.send(struct.pack('ii10s10s', SendType.Search.value, hwnd, nameid.encode('gbk'),
+                                    nickname[0][0].encode('gbk')))
             Lnum.append(num[0])
 
     def friendchat(self, client, msg):

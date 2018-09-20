@@ -7,8 +7,11 @@
 #include "afxdialogex.h"
 #include "resource.h"
 #include "DataType.h"
-#include "FriendList.h"
+#include "LoginDlg.h"
+#include <map>
+using std::map;
 // CPrivateChat 对话框
+extern map<CString, HWND> ChatWindows;
 
 IMPLEMENT_DYNAMIC(CPrivateChat, CDialogEx)
 
@@ -36,6 +39,7 @@ void CPrivateChat::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPrivateChat, CDialogEx)
 	ON_MESSAGE(WM_GETFRIENDMSG, &CPrivateChat::OnGetfriendmsg)
 	ON_BN_CLICKED(IDSEND, &CPrivateChat::OnBnClickedSend)
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -48,6 +52,7 @@ BOOL CPrivateChat::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化
 	SetWindowText(Title_name);
+	ChatWindows[Title_name] = this->GetSafeHwnd();
 	return TRUE; 
 }
 
@@ -92,25 +97,29 @@ void CPrivateChat::OnBnClickedSend()
 	PriTextView = PriTextView + L"你说(" + Time + L"):\r\n    " + PriEditView + L"\r\n";
 
 	// 获取主对话框
-	//CFriendList *main = (CFriendList*)AfxGetMainWnd();
-	CString str;
-	CWnd* main = GetParent();
-	//main = main->GetParent();
-	main->GetWindowTextW(str);
-	//MessageBox(str, str, NULL);
+	CLoginDlg *main = (CLoginDlg*)AfxGetMainWnd();
+
 	// 填写用户的信息
 	MsgInfo msg = { MsgType::FRIENDMSG, m_hWnd };
 	memcpy(msg.frdchat_msg.msg, PriEditView.GetBuffer(), PriEditView.GetLength() * 2);
-	memcpy(msg.frdchat_msg.from, str.GetBuffer(),str.GetLength() * 2);
+	memcpy(msg.frdchat_msg.from, main->EditAccount.GetBuffer(), main->EditAccount.GetLength() * 2);
 
 	// 获取发送对象，即窗口名
 	CString To;
 	this->GetWindowTextW(To);
 	memcpy(msg.frdchat_msg.to, To.GetBuffer(), To.GetLength() * 2);
-	main = AfxGetMainWnd();
 	// 通过主窗口发送消息
 	::SendMessage(main->m_hWnd, WM_SENDMSG, NULL, (LPARAM)&msg);
 
+	PriEditView = "";
 	UpdateData(FALSE);
 }
 
+
+
+void CPrivateChat::OnClose()
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	ChatWindows.erase(Title_name);
+	CDialogEx::OnClose();
+}

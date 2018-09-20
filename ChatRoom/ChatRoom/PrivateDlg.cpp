@@ -46,7 +46,8 @@ BOOL CPrivateDlg::OnInitDialog()
 	CRect rc;
 	PrivateList.GetClientRect(rc);
 	int Width = rc.Width();
-	PrivateList.InsertColumn(0, L"好友名单", 0, Width);
+	PrivateList.InsertColumn(0, L"好友名单", LVCFMT_CENTER, Width/2);
+	PrivateList.InsertColumn(1, L"好友ID", LVCFMT_CENTER, Width/2);
 	::PostMessage(AfxGetMainWnd()->m_hWnd, WM_Search, (WPARAM)m_hWnd, NULL);
 	return TRUE;
 }
@@ -56,12 +57,12 @@ afx_msg LRESULT CPrivateDlg::OnUpdatefrnd(WPARAM wParam, LPARAM lParam)
 	RecvSearch* update = (RecvSearch*)lParam;
 
 	// 获取插入到的位置
-	int index = PrivateList.GetItemCount()+1;
+	int index = PrivateList.GetItemCount();
 
 	// 添加用户名到列表
 	// &update->name[1]  和Python相关的编码问题
-	PrivateList.InsertItem(index,CString(update->name));
-
+	PrivateList.InsertItem(index,CString(update->nick));
+	PrivateList.SetItemText(index, 1, CString(update->name));
 	return 0;
 }
 
@@ -70,7 +71,7 @@ void CPrivateDlg::OnDblclkList1(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
 	// TODO: 在此添加控件通知处理程序代码
-	CString person = PrivateList.GetItemText(pNMItemActivate->iItem, 0);
+	CString person = PrivateList.GetItemText(pNMItemActivate->iItem, 1);
 	CPrivateChat* m_prichat = new CPrivateChat(person);
 	m_prichat->Create(IDD_DIALOG1,this);
 	m_prichat->ShowWindow(SW_SHOW);
